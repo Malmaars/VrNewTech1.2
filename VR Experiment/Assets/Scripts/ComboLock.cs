@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ComboLock : MonoBehaviour
 {
+    public GameObject doorLeft;
+    public GameObject doorRight;
     public LockButton top, middle, bottom;      //de knoppen (voor toegang tot hun value)
     public int[] solution;                      //de solution waarmee het slot open gaat
 
@@ -33,5 +35,9 @@ public class ComboLock : MonoBehaviour
         locked = false;
         Debug.Log("Lock opened!");
         this.gameObject.SetActive(false);
+
+        doorLeft.transform.rotation = Quaternion.Euler(doorLeft.transform.rotation.eulerAngles.x, 135, doorLeft.transform.rotation.eulerAngles.z);
+        doorRight.transform.rotation = Quaternion.Euler(doorRight.transform.rotation.eulerAngles.x, -135, doorRight.transform.rotation.eulerAngles.z);
+
     }
 }
