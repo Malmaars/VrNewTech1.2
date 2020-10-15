@@ -94,7 +94,7 @@ public class GrabScript : MonoBehaviour
                 firstGrab = true;
             }
 
-            other.transform.rotation = Quaternion.Euler(new Vector3(other.transform.rotation.eulerAngles.x + (rotationOfGrab.eulerAngles.x - this.transform.rotation.eulerAngles.x), 90, 0));
+            other.transform.rotation = Quaternion.Euler(new Vector3((other.transform.rotation.eulerAngles.x - (rotationOfGrab.eulerAngles.x - this.transform.rotation.eulerAngles.x)), 90, 0));
         }
     }
 }
