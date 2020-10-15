@@ -94,7 +94,7 @@ public class GrabScript : MonoBehaviour
                 firstGrab = true;
             }
 
-            other.transform.rotation *= rotationOfGrab;
+            other.transform.rotation *= this.transform.rotation * rotationOfGrab;
         }
     }
 }
