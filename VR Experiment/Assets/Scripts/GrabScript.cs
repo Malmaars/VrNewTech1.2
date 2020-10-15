@@ -12,7 +12,7 @@ public class GrabScript : MonoBehaviour
     private Vector3 currentObjectLoc;
     private Vector3 lastObjectLoc;
 
-    private Vector3 rotationOfGrab;
+    private Quaternion rotationOfGrab;
 
     private bool firstGrab;
 
@@ -90,12 +90,11 @@ public class GrabScript : MonoBehaviour
         {
             if (firstGrab == false)
             {
-                rotationOfGrab = this.transform.rotation.eulerAngles;
+                rotationOfGrab = this.transform.rotation;
                 firstGrab = true;
             }
 
-            Vector3 rotationDiff = rotationOfGrab + this.transform.rotation.eulerAngles;
-            other.transform.rotation = Quaternion.Euler(new Vector3(-rotationDiff.x, 90, 0));
+            other.transform.rotation *= rotationOfGrab;
         }
     }
 }
