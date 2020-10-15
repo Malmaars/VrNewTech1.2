@@ -12,6 +12,8 @@ public class GrabScript : MonoBehaviour
     private Vector3 currentObjectLoc;
     private Vector3 lastObjectLoc;
 
+    private Vector3 rotationOfGrab;
+
     private bool firstGrab;
 
     public bool LeftHand;
@@ -31,10 +33,9 @@ public class GrabScript : MonoBehaviour
 
     public void releaseObject()
     {
-        if (grabbedObject != null)
+        if ((LeftHand == true && OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger) < 0.75f) || (RightHand == true && OVRInput.Get(OVRInput.Axis1D.SecondaryHandTrigger) < 0.75f))
         {
-
-            if ((LeftHand == true && OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger) < 0.75f) || (RightHand == true && OVRInput.Get(OVRInput.Axis1D.SecondaryHandTrigger) < 0.75f))
+            if (grabbedObject != null)
             {
                 //release object
 
@@ -53,9 +54,9 @@ public class GrabScript : MonoBehaviour
                 }
 
                 grabbedObject = null;
-
-                firstGrab = false;
             }
+
+            firstGrab = false;
         }
     }
 
@@ -82,6 +83,18 @@ public class GrabScript : MonoBehaviour
 
                 grabbedObject.transform.GetComponent<Rigidbody>().isKinematic = true;
             }
+        }
+
+        else if (other.GetComponent<KeyAndLock>())
+        {
+            if (firstGrab == false)
+            {
+                rotationOfGrab = this.transform.rotation.eulerAngles;
+                firstGrab = true;
+            }
+
+            Vector3 rotationDiff = rotationOfGrab + this.transform.rotation.eulerAngles;
+            other.transform.rotation = Quaternion.Euler(new Vector3(-rotationDiff.x, 90, 0));
         }
     }
 }
