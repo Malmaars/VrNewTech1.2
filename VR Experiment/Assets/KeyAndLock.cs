@@ -25,6 +25,9 @@ public class KeyAndLock : MonoBehaviour
 
             else
                 this.transform.position = Vector3.Lerp(this.transform.position, target.transform.position, Time.deltaTime * 5);
+
+            if (!this.GetComponent<Rigidbody>().isKinematic)
+                GetComponent<Rigidbody>().isKinematic = true;
         }
 
         if(this.transform.position == target.transform.position)
