@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class LockCheck : MonoBehaviour
 {
+    public GameObject telescope;
+
     public Transform night;
     public Transform day;
+    
     public Material skyboxNoon;
     public Material skyboxNight;
+    public Material teleDay;
+    public Material teleNight;
 
     public bool checkCheck;
 
@@ -16,11 +21,13 @@ public class LockCheck : MonoBehaviour
         if(night.position.y > day.position.y)
         {
             RenderSettings.skybox = skyboxNight;
+            telescope.GetComponent<MeshRenderer>().material = teleNight;
         }
 
         else
         {
             RenderSettings.skybox = skyboxNoon;
+            telescope.GetComponent<MeshRenderer>().material = teleDay;
         }
     }
     private void OnTriggerEnter(Collider other)

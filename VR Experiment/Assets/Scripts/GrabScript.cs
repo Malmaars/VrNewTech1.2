@@ -68,36 +68,33 @@ public class GrabScript : MonoBehaviour
         {
             if ((other.gameObject.tag == "SmallObject" && resizer.playerSize == false) || (other.gameObject.tag == "LargeObject" && resizer.playerSize == true))
             {
-                if (other.GetComponent<KeyAndLock>())
-                {
-                    if (firstGrab == false)
-                    {
-                        rotationOfGrab = this.transform.rotation.eulerAngles;
-                        firstGrab = true;
-                    }
+                //grab object
+                grabbedObject = other.gameObject;
 
-                    Vector3 rotationDiff = rotationOfGrab + this.transform.rotation.eulerAngles;
-                    other.transform.rotation = Quaternion.Euler(new Vector3(rotationDiff.x, 90, 0));
+                if (firstGrab == false)
+                {
+                    if (grabbedObject.transform.parent != null)
+                        prevParent = grabbedObject.transform.parent;
+
+                    grabbedObject.transform.SetParent(this.transform);
+
+                    firstGrab = true;
                 }
 
-                else
-                {
-                    //grab object
-                    grabbedObject = other.gameObject;
-
-                    if (firstGrab == false)
-                    {
-                        if (grabbedObject.transform.parent != null)
-                            prevParent = grabbedObject.transform.parent;
-
-                        grabbedObject.transform.SetParent(this.transform);
-
-                        firstGrab = true;
-                    }
-
-                    grabbedObject.transform.GetComponent<Rigidbody>().isKinematic = true;
-                }
+                grabbedObject.transform.GetComponent<Rigidbody>().isKinematic = true;
             }
+        }
+
+        else if (other.GetComponent<KeyAndLock>())
+        {
+            if (firstGrab == false)
+            {
+                rotationOfGrab = this.transform.rotation.eulerAngles;
+                firstGrab = true;
+            }
+
+            Vector3 rotationDiff = rotationOfGrab + this.transform.rotation.eulerAngles;
+            other.transform.rotation = Quaternion.Euler(new Vector3(-rotationDiff.x, 90, 0));
         }
     }
 }
