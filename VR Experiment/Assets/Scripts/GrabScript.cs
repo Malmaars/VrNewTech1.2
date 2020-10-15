@@ -12,7 +12,7 @@ public class GrabScript : MonoBehaviour
     private Vector3 currentObjectLoc;
     private Vector3 lastObjectLoc;
 
-    private Vector3 rotationOfGrab;
+    private Quaternion rotationOfGrab;
 
     private bool firstGrab;
 
@@ -85,16 +85,16 @@ public class GrabScript : MonoBehaviour
             }
         }
 
-        else if (other.GetComponent<KeyAndLock>() && ((LeftHand == true && OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger) >= 0.75f) || (RightHand == true && OVRInput.Get(OVRInput.Axis1D.SecondaryHandTrigger) >= 0.75f)))
+        else if (other.GetComponent<KeyAndLock>() && ((LeftHand == true && OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger) >= 0.75f) || (RightHand == true && OVRInput.Get(OVRInput.Axis1D.SecondaryHandTrigger) >= 0.75f))
+            && other.GetComponent<Rigidbody>().isKinematic == true)
         {
             if (firstGrab == false)
             {
-                rotationOfGrab = this.transform.rotation.eulerAngles;
+                rotationOfGrab = this.transform.rotation;
                 firstGrab = true;
             }
 
-            Vector3 rotationDiff = rotationOfGrab + this.transform.rotation.eulerAngles;
-            other.transform.rotation = Quaternion.Euler(new Vector3(-rotationDiff.x, 90, 0));
+            other.transform.rotation *= rotationOfGrab;
         }
     }
 }
