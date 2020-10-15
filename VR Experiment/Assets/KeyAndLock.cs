@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class KeyAndLock : MonoBehaviour
 {
+    public bool inLock;
     private GameObject target;
     private bool moveBool;
 
@@ -21,6 +22,7 @@ public class KeyAndLock : MonoBehaviour
             if (Vector3.Distance(this.transform.position, target.transform.position) <= 0.01f)
             {
                 this.transform.position = target.transform.position;
+                this.transform.rotation = Quaternion.Euler(new Vector3(90, 90, 0));
             }
 
             else
@@ -33,6 +35,7 @@ public class KeyAndLock : MonoBehaviour
         if(this.transform.position == target.transform.position)
         {
             target.transform.SetParent(this.transform);
+            inLock = true;
         }
 
     }
