@@ -22,11 +22,13 @@ public class KeyAndLock : MonoBehaviour
             if (Vector3.Distance(this.transform.position, target.transform.position) <= 0.01f)
             {
                 this.transform.position = target.transform.position;
-                this.transform.rotation = Quaternion.Euler(new Vector3(90, 90, 0));
             }
 
             else
+            {
                 this.transform.position = Vector3.Lerp(this.transform.position, target.transform.position, Time.deltaTime * 5);
+                this.transform.rotation = Quaternion.Euler(new Vector3(90, 90, 0));
+            }
 
             if (!this.GetComponent<Rigidbody>().isKinematic)
                 GetComponent<Rigidbody>().isKinematic = true;
