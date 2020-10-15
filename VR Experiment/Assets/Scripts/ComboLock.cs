@@ -20,9 +20,11 @@ public class ComboLock : MonoBehaviour
 
     void Update()
     {
-        if(locked)
-            if (top.currentValue == solution[0] && middle.currentValue == solution[1] && bottom.currentValue == solution[3])
+        if (locked)
+        {
+            if (top.currentValue == solution[0] && middle.currentValue == solution[1] && bottom.currentValue == solution[2])
                 Unlock();
+        }
     }
 
     private void Unlock()
@@ -30,5 +32,6 @@ public class ComboLock : MonoBehaviour
         //do unlock stuff here
         locked = false;
         Debug.Log("Lock opened!");
+        this.gameObject.SetActive(false);
     }
 }

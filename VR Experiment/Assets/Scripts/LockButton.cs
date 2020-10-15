@@ -6,7 +6,7 @@ public class LockButton : MonoBehaviour
 {
     public GameObject NumberWheel;
 
-    public int currentValue { get; private set; }
+    public int currentValue { get; private set; } = 4;
     private bool canIncrement = true;
 
     private void OnTriggerStay(Collider other)

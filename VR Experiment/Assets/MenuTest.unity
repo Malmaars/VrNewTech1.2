@@ -718,7 +718,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.05
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!4 &319838405 stripped
 Transform:
@@ -1240,7 +1240,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 67e4503cb813c4f40b6ff5f305e4d5a8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.06781388
+      value: -0.055
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 67e4503cb813c4f40b6ff5f305e4d5a8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2131,7 +2131,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 67e4503cb813c4f40b6ff5f305e4d5a8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.027461499
+      value: 0.0456
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 67e4503cb813c4f40b6ff5f305e4d5a8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2420,6 +2420,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LockBody
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 95ed0b09cd58f524b9acb15aff4784b8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 95ed0b09cd58f524b9acb15aff4784b8, type: 3}
 --- !u!1 &2091033674 stripped
@@ -2521,5 +2525,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.1
+  m_Radius: 0.05
   m_Center: {x: 0, y: 0, z: 0}
