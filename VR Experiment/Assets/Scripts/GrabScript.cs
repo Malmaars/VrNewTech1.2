@@ -85,7 +85,7 @@ public class GrabScript : MonoBehaviour
             }
         }
 
-        else if (other.GetComponent<KeyAndLock>())
+        else if (other.GetComponent<KeyAndLock>() && ((LeftHand == true && OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger) >= 0.75f) || (RightHand == true && OVRInput.Get(OVRInput.Axis1D.SecondaryHandTrigger) >= 0.75f)))
         {
             if (firstGrab == false)
             {
