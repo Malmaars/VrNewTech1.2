@@ -1,5 +1,6 @@
 ﻿ using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class GrabScript : MonoBehaviour
@@ -46,10 +47,10 @@ public class GrabScript : MonoBehaviour
                     grabbedObject.GetComponent<Rigidbody>().isKinematic = false;
 
                     if (LeftHand == true)
-                        grabbedObject.GetComponent<Rigidbody>().velocity = OVRInput.GetLocalControllerVelocity(OVRInput.Controller.LTouch);
+                        grabbedObject.GetComponent<Rigidbody>().velocity = OVRInput.GetLocalControllerVelocity(OVRInput.Controller.LTouch) * 10;
 
                     if (RightHand == true)
-                        grabbedObject.GetComponent<Rigidbody>().velocity = OVRInput.GetLocalControllerVelocity(OVRInput.Controller.RTouch);
+                        grabbedObject.GetComponent<Rigidbody>().velocity = OVRInput.GetLocalControllerVelocity(OVRInput.Controller.RTouch) * 10;
 
                 }
 
@@ -93,8 +94,8 @@ public class GrabScript : MonoBehaviour
                 rotationOfGrab = this.transform.rotation;
                 firstGrab = true;
             }
-
-            other.transform.rotation = Quaternion.Euler(new Vector3((other.transform.rotation.eulerAngles.x - (rotationOfGrab.eulerAngles.x - this.transform.rotation.eulerAngles.x)), 90, 0));
+            other.transform.rotation = other.transform.rotation * (transform.rotation * Quaternion.Inverse(rotationOfGrab));
+            other.transform.rotation = Quaternion.Euler(new Vector3(other.transform.rotation.eulerAngles.x, 90, 0));
         }
     }
 }
